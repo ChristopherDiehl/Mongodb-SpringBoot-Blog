@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Implementation-Title: blog_backend
+Implementation-Title: Blog
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: Chris
 Implementation-Vendor-Id: com.blog

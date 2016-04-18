@@ -16,15 +16,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 
 @Controller
-@RequestMapping("/*")
+
 public class MainController {
 
 	@Autowired 
 		private BlogPostRepository blogRepo;
 
 	@RequestMapping("/")
-	public void getBlogPosts(ModelMap model) {
-		model.put("Hello","WORLD");
+	public String index()
+	{
+		return "index";
 	}
 
 	@RequestMapping(value="/blog_post{title}", method=RequestMethod.GET)
