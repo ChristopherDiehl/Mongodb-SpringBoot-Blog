@@ -82,3 +82,7 @@ footer {
 .guide{
 	padding-left: -20px;
 }
+.aboutPic {
+	padding-bottom: 20px;
+	/*Need to remove this for mobile stylesheet*/
+}

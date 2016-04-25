@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 
 @Controller
 
@@ -22,10 +23,16 @@ public class MainController {
 	@Autowired 
 		private BlogPostRepository blogRepo;
 
-	@RequestMapping("/")
+	@RequestMapping(value={"/","/index"}, method=RequestMethod.GET)
 	public String index()
 	{
 		return "index";
+	}
+
+	@RequestMapping(value="/aboutUs")
+	public String aboutUs()
+	{
+		return "aboutUs";
 	}
 
 	@RequestMapping(value="/blog_post{title}", method=RequestMethod.GET)
@@ -41,6 +48,49 @@ public class MainController {
 	  return model;
 	}
 
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String login(Model model)
+	{	
+		//model.addAttribute("lc", new LoginCredentials());
+		System.out.println("Login controller");
+		return "login";
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public String loginPost(Model model)
+	{	
+		//model.addAttribute("lc", new LoginCredentials());
+		System.out.println("Login POST controller");
+		model.addAttribute("bp",new BlogPost());
+		return "newPost";
+	}
+	
+	@RequestMapping("/login-error.html")
+	public String loginError(Model model) {
+	    model.addAttribute("loginError", true);
+	    return "login.html";
+	}
+	
+	@RequestMapping("/error.html")
+	  public String error(HttpServletRequest request, Model model) {
+	    model.addAttribute("errorCode", request.getAttribute("javax.servlet.error.status_code"));
+	    Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
+	    String errorMessage = null;
+	    if (throwable != null) {
+	      errorMessage = throwable.getMessage();
+	    }
+	    model.addAttribute("errorMessage", errorMessage);
+	    return "error";
+	 }
+	
+	@RequestMapping(value="/newPost", method = RequestMethod.GET)
+	public String isLoggedIn( Model model)
+	{
+		model.addAttribute("bp",new BlogPost());
+		System.out.println("lc is not admin");
+		return "newPost";
+	}
+
 	@RequestMapping(value="/blog_post{tags}", method=RequestMethod.GET)
 	public ModelMap blogByTitle(@PathVariable ArrayList<String> tags) 
 	{
@@ -51,24 +101,22 @@ public class MainController {
 	}
 
 	@RequestMapping(value="/newPost", method=RequestMethod.POST)
-    public final String ReturnUrl (@ModelAttribute BlogPost bp, Model model) {
-    	  System.out.println("THis is redirecting");
+    public String ReturnUrl (@ModelAttribute BlogPost bp, Model model) {
         model.addAttribute("bp", bp);
         blogRepo.save(bp);
-        return "redirect:index.jsp";
+        return "index";
    }
 
 	@RequestMapping("/videos")
 	public String videos(ModelMap model) 
 	{
 		//should do foo. But it's all static
-		return "THIS IS VIDEO CONTROLLER";
+		return "videos";
 	}
 
-	@RequestMapping("/blog_post")
-	public void getBlogPost(ModelMap model) 
+	@RequestMapping(value={"/blog_post","/blogPost"})
+	public void getBlogPosts(ModelMap model) 
 	{
-
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findAll();
 		model.put("BLOGS",bpl);
 	}

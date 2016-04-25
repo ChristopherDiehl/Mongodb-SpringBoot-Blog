@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 
   <meta charset="utf-8" />
@@ -37,9 +38,10 @@
           </ul>
           <ul class="nav navbar-nav navbar-brand" >
             <li class ="nav-items"><a href="index">Blog</a></li>
-            <li class= "nav-items" ><a href="#">Videos</a></li>
-            <li class= "nav-items"><a href="aboutUs">About Us</a></li>
+            <li class= "nav-items" ><a href="videos">Videos</a></li>
+            <li class= "nav-items"><a href="#">About Us</a></li>
           </ul><span></span>
+
           <ul class="nav navbar-nav  navbar-brand">
           	<li><a href="https://www.instagram.com/ecatalds/"><i class="fa fa-fw fa-twitter"></i></a></li>
           	<li><a href="https://www.instagram.com/ecatalds/"><i class="fa fa-fw fa-instagram"></i></a></li>
@@ -48,25 +50,17 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <div id="content" class="videos col-md-8 ">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/0QD7VntQ1q0" allowfullscreen="true"></iframe>
-      </div>
+  </div>
+  <div class = "container-fluid">
+    <div class="col-md-6" >
+       <img src="../static/images/familySnow.jpg" th:src="@{images/familySnow.jpg}" alt="Cute couple picture" class="img-rounded img-responsive center-block aboutPic" />
     </div>
-    <div id="content" class="videos col-md-8 ">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/uGR5a9CBW0Y" allowfullscreen="true"></iframe>
-      </div>
+    <div class = "col-md-6">
+      <h3>Meet Christopher and Emily.</h3>
+      <p>I never expected life to turn out this way. After growing up in a poor town in Central Pa, working full time since the age of 15, I went to college wishing a life of luxury and ease. Life in Pittsburgh was exactly that, easy and luxurious. I was in a fraternity, was dating an amazing woman, and doing in well in class. My life changed abruptly when the woman of my dreams told me she was pregnant. News of my impending Fatherhood shocked me, I didn't know what to say, this was not in the plan. I was nervous and stressed, constantly overthinking the logistics of our situtation. Fast forward a year later, after witnessing the birth of my daughter, landing a job as a software developer, transferring colleges, and having a year to digest Fatherhood. Now I am going to share our story with the world in the hopes that people will know that blessings can come in many unexpected forms, and that <b>Small Feet</b> can make <b>Big Strides</b> - Chris.
+      </p>
     </div>
-    <div id="content" class="videos col-md-8 ">
-      <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/bAPFB-ZuR_Q" allowfullscreen="true"></iframe>
-      </div>
-    </div>
-    <aside class="col-md-4">
-      <h1>ADDS GO HERE</h1>
-    </aside>
-    </div>
+  </div>
     <footer class="container-fluid">
      <center>
       <p>Copyright &copy; 2016 Christopher Diehl </p>

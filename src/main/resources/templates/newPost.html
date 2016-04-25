@@ -2,24 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Christopher Diehl">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="Christopher Diehl" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
   <title>Emily Blog</title>
 
   <!-- Bootstrap Core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
 
   <!--Fonts-->
-  <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css' />
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css' />
 
   <!-- Custom CSS -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -55,23 +55,24 @@
 
           <div class="form-group">
             <div class="col-md-8">
-              <form action = "#" th:action="@{/newPost}" th:object="bp" method = "post">
+              <form action = "#" th:action="@{/newPost}" th:object="${bp}" method = "post">
               <h2>Title</h2>
               <label for="input" class="sr-only">Title</label>
-              <input type="text" th:field="*{title}" class="form-control" placeholder="Title" required autofocus>
+              <input type="text" th:field="*{title}" class="form-control" placeholder="Title" required="required" autofocus="autofocus" />
               <h2>Tags</h2>
               <label for="Blog post" class="sr-only">Blog Post</label>
-              <input type="text" th:field="*{tags}" class="form-control" placeholder="tags" required>
+              <input type="text" th:field="*{tags}" class="form-control" placeholder="tags" required="required" />
               <h2>Blog Body</h2>
-              <textarea class="form-control" rows="6" th:field="*{body}" placeholder="What's up?" required></textarea>
+              <textarea class="form-control" rows="6" th:field="*{body}" placeholder="What's up?" required="required"></textarea>
+          	  </form>
           </div>
           <aside class="col-md-4 guide">
             <div>
-              <p> Love ya.<br>
-                GUIDE:<br>
-                Put a <b>< p></b> before each new paragraph and a <br><b>< /p></b> at the end of each paragraph
-                <br>Example</br>
-                < p > This is an example paragraph < / p>
+              <p> Love ya.<br />
+                GUIDE:<br />
+                Put a <b>&lt;p&gt;</b> before each new paragraph and a <br /><b>&lt;/p&gt;</b> at the end of each paragraph
+                <br />Example<br />
+                &lt;p&gt; This is an example paragraph &lt;/p&gt;
 
               </p>
             </div>
@@ -90,7 +91,7 @@
 
   <footer class="container-fluid">
    <center>
-    <p>Copyright &copy 2016 Christopher Diehl </p>
+    <p>Copyright &copy; 2016 Christopher Diehl </p>
     <p><small>all rights reserved</small></p>
   </center>
 </footer>

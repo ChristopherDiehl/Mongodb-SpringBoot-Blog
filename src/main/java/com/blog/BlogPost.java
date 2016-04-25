@@ -18,7 +18,7 @@ public class BlogPost
 	private String summary;
 	private ArrayList <String> tags;
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-	private Date date = new Date();
+	private Date date;
 
 	public BlogPost() {
 		tags = new ArrayList<String>();
@@ -30,7 +30,7 @@ public class BlogPost
 		this.author = author;
 		this.body = body;
 		this.summary = summary;
-		
+		this.date = new Date();
 		this.tags = (ArrayList<String>) Arrays.asList(tags.split("\\s*,\\s*"));
 
 
@@ -66,6 +66,14 @@ public class BlogPost
 		return this.body;
 	}
 
+	public String getDate()
+	{
+		return dateFormat.format(date);
+	}
+	public void setDate()
+	{
+		date = new Date();
+	}
 	public String getAuthor()
 	{
 		return this.author;
