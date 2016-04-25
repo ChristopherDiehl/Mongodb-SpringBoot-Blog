@@ -49,9 +49,10 @@ public class MainController {
 	}
 
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String login(Model model)
+	public String login(Model model,HttpServletRequest request)
 	{	
-		//model.addAttribute("lc", new LoginCredentials());
+		System.out.println(request.getRemoteAddr());
+	
 		System.out.println("Login controller");
 		return "login";
 	}
@@ -103,6 +104,8 @@ public class MainController {
 	@RequestMapping(value="/newPost", method=RequestMethod.POST)
     public String ReturnUrl (@ModelAttribute BlogPost bp, Model model) {
         model.addAttribute("bp", bp);
+        System.out.println("ATTEMPTING TO SAVE BLOG POST");
+        System.out.println("BP: title: "+bp.getTitle()+"author: "+bp.getAuthor() +"Date"+bp.getDate()+"body:"+bp.getBody()+"summary: "+bp.getSummary());
         blogRepo.save(bp);
         return "index";
    }
@@ -110,7 +113,7 @@ public class MainController {
 	@RequestMapping("/videos")
 	public String videos(ModelMap model) 
 	{
-		//should do foo. But it's all static
+		//could  do foo. But it's all static
 		return "videos";
 	}
 

@@ -1,6 +1,8 @@
 package com.blog;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,11 +19,14 @@ public class BlogPost
 	private String body;
 	private String summary;
 	private ArrayList <String> tags;
+	@Transient
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+	@Field
 	private Date date;
 
 	public BlogPost() {
 		tags = new ArrayList<String>();
+		this.date = new Date();
 	}
 
 	public BlogPost(String title, String author, String body, String summary, String tags) 
@@ -32,8 +37,6 @@ public class BlogPost
 		this.summary = summary;
 		this.date = new Date();
 		this.tags = (ArrayList<String>) Arrays.asList(tags.split("\\s*,\\s*"));
-
-
 	}
 
 	@Override
@@ -51,7 +54,9 @@ public class BlogPost
 	{
 		return summary;
 	}
+	
 
+	
 	public void setTag(String tag)
 	{	
 		tags.add(tag);
@@ -65,11 +70,12 @@ public class BlogPost
 	{
 		return this.body;
 	}
-
+	@Transient
 	public String getDate()
 	{
 		return dateFormat.format(date);
 	}
+	@Transient
 	public void setDate()
 	{
 		date = new Date();
