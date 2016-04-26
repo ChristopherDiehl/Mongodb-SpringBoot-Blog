@@ -30,13 +30,13 @@
 
         <div class="navbar-header navbar-left">
 
-          <a class="nav-logo navbar-brand nav-items" href="#"><strong>Small Feet Big Strides</strong></a>
+          <a class="nav-logo navbar-brand nav-items" href="index"><strong>Small Feet Big Strides</strong></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav navbar-left">
           </ul>
           <ul class="nav navbar-nav navbar-brand" >
-            <li class ="nav-items"><a href="#">Blog</a></li>
+            <li class ="nav-items"><a href="index">Blog</a></li>
             <li class= "nav-items" ><a href="videos">Videos</a></li>
             <li class= "nav-items"><a href="aboutUs">About Us</a></li>
           </ul><span></span>
@@ -49,12 +49,12 @@
 
     </nav>
     <div id="content" class="col-md-8">
-          <article class = "blog_excerpt">
+          <article th:each="bp : ${BLOGS}" class = "blog_excerpt">
             <header>
-              <h1><a href="blog_post.html">Exciting Title</a></h1>
-              <p><a href="newPost.html">Blog Summary</a></p>
+              <h1><a href="blogPost?getBlogId=bp.title" th:text="${bp.title}"></a></h1>
+              <p><a th:text="${bp.summary}">Blog Summary</a></p>
             </header>
-            <p>First Paragraph</p>
+            <p th:text="${bp.firstParagraph}"> </p>
 
           </article>
       <center>

@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.List;
 public class BlogPost 
 {
 	@Id
@@ -18,6 +17,7 @@ public class BlogPost
 	private String author;
 	private String body;
 	private String summary;
+	private String firstParagraph;
 	private ArrayList <String> tags;
 	@Transient
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -35,6 +35,7 @@ public class BlogPost
 		this.author = author;
 		this.body = body;
 		this.summary = summary;
+		this.firstParagraph = getFirstParagraph();
 		this.date = new Date();
 		this.tags = (ArrayList<String>) Arrays.asList(tags.split("\\s*,\\s*"));
 	}
@@ -89,14 +90,23 @@ public class BlogPost
 	{
 		String [] firstParagraph = body.split("</p>");
 		if(firstParagraph.length > 0){
+			System.out.println(firstParagraph[0]);
+
 			return firstParagraph[0];
 		}
 		return "";
 	}
-
 	public String getTitle()
 	{
 		return this.title;
+	}
+	public void setId(String id)
+	{
+		this.id = id;
+	}
+	public String getId()
+	{
+		return id;
 	}
 
 	public void setTitle(String title)
@@ -112,6 +122,7 @@ public class BlogPost
 	public void setBody(String body)
 	{
 		this.body = body;
+		this.firstParagraph = getFirstParagraph();
 	}
 
 }

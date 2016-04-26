@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Christopher Diehl">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="Christopher Diehl" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
   <title>Emily Blog</title>
 
   <!-- Bootstrap Core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
 
   <!--Fonts-->
-  <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css' />
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css' />
 
   <!-- Custom CSS -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -32,13 +32,13 @@
       <div class="container">
         <div class="navbar-header navbar-left">
 
-          <a class="nav-logo navbar-brand nav-items" href="blog.html"><strong>Small Feet Big Strides</strong></a>
+          <a class="nav-logo navbar-brand nav-items" href="index"><strong>Small Feet Big Strides</strong></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav navbar-left">
           </ul>
           <ul class="nav navbar-nav navbar-brand" >
-            <li class ="nav-items"><a href="blog.html">Blog</a></li>
+            <li class ="nav-items"><a href="index">Blog</a></li>
             <li class= "nav-items" ><a href="videos.html">Videos</a></li>
             <li class= "nav-items"><a href="#">About Us</a></li>
           </ul><span></span>
@@ -53,14 +53,15 @@
     <div id="content" class="col-md-8">
      <article>
       <header>
-        <h1>${BLOG_TITLE}</h1>
-        <p>${BLOG_SUMMARY}</p>
+        <h1 th:text="${bp.title}"></h1>
+        <p th:text="${bp.summary}"></p>
 
       </header>
-      <p>
-        ${BLOG_BODY}
+      <p th:text="${bp.body}">
+       
       </p>
-      <p>${BLOG_AUTHOR}</p>
+      <p th:text="{bp.author}"></p>
+	  <p th:text="{bp.date}"></p>
 
     <div class = "share_buttons">
       <div class = "pinterest  col-md-1">
@@ -72,8 +73,9 @@
         <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </div>
-      <div class = "col-md-4">
-             <a>${tag}</a>
+      <div class = "col-md-4" th:each="tag : ${bp.tags}">
+      
+             <a th:text="${tag}"></a>
       </div>
     </div>
     </article>
@@ -87,7 +89,7 @@
 
     <footer class="container-fluid">
      <center>
-      <p>Copyright &copy 2016 Christopher Diehl </p>
+      <p>Copyright &copy; 2016 Christopher Diehl </p>
       <p><small>all rights reserved</small></p>
      </center>
     </footer>

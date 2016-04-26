@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 @Controller
 
@@ -24,8 +27,15 @@ public class MainController {
 		private BlogPostRepository blogRepo;
 
 	@RequestMapping(value={"/","/index"}, method=RequestMethod.GET)
-	public String index()
+	public String index(ModelMap model)
 	{
+		Sort sort = new Sort(Sort.Direction.DESC,"date");
+		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findAll(sort);
+		if(bpl.size() >0){
+		 BlogPost bp= bpl.get(0);
+		 System.out.println(bp.toString());
+		}
+		model.put("BLOGS",bpl);
 		return "index";
 	}
 
@@ -68,8 +78,9 @@ public class MainController {
 	
 	@RequestMapping("/login-error.html")
 	public String loginError(Model model) {
+		System.out.println("ADDING LOGING ERROR");
 	    model.addAttribute("loginError", true);
-	    return "login.html";
+	    return "login";
 	}
 	
 	@RequestMapping("/error.html")
@@ -107,6 +118,7 @@ public class MainController {
         System.out.println("ATTEMPTING TO SAVE BLOG POST");
         System.out.println("BP: title: "+bp.getTitle()+"author: "+bp.getAuthor() +"Date"+bp.getDate()+"body:"+bp.getBody()+"summary: "+bp.getSummary());
         blogRepo.save(bp);
+        
         return "index";
    }
 
@@ -117,10 +129,11 @@ public class MainController {
 		return "videos";
 	}
 
-	@RequestMapping(value={"/blog_post","/blogPost"})
-	public void getBlogPosts(ModelMap model) 
+	@RequestMapping(value="/blogPost" , method=RequestMethod.GET)
+	public void getBlogPosts(ModelMap model, @RequestParam("getBlogId") String blogId) 
 	{
-		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findAll();
-		model.put("BLOGS",bpl);
+		System.out.println("blogId: "+blogId);
+		BlogPost bp = blogRepo.findById(blogId);
+		model.put("bp",bp);
 	}
 }
