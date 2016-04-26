@@ -60,12 +60,12 @@
       <p th:text="${bp.body}">
        
       </p>
-      <p th:text="{bp.author}"></p>
-	  <p th:text="{bp.date}"></p>
+      <p th:text="${bp.author}"></p>
+	  <p th:text="${bp.date}"></p>
 
     <div class = "share_buttons">
       <div class = "pinterest  col-md-1">
-        <a data-pin-do="buttonPin" data-pin-color="white" data-pin-count="beside" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F&media=https%3A%2F%2Ffarm8.staticflickr.com%2F7027%2F6851755809_df5b2051c9_z.jpg&description=Next%20stop%3A%20Pinterest"><img src="https://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_20.png" /></a>
+        <a data-pin-do="buttonPin" data-pin-color="white" data-pin-count="beside" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F"><img src="https://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_20.png" /></a>
       </div>
       <div class = "pinterest  col-md-1">
       </div>
@@ -94,7 +94,6 @@
      </center>
     </footer>
   </body>
+   <script async="async" defer="defer" src="//assets.pinterest.com/js/pinit.js"></script>
   </html>
-
-
-  <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+  

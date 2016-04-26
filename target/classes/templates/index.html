@@ -51,7 +51,7 @@
     <div id="content" class="col-md-8">
           <article th:each="bp : ${BLOGS}" class = "blog_excerpt">
             <header>
-              <h1><a href="blogPost?getBlogId=bp.title" th:text="${bp.title}"></a></h1>
+              <h1><a th:href="@{'blogPost?getBlogId='+${bp.id}}" th:text="${bp.title}"></a></h1>
               <p><a th:text="${bp.summary}">Blog Summary</a></p>
             </header>
             <p th:text="${bp.firstParagraph}"> </p>

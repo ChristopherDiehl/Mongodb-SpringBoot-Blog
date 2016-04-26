@@ -130,10 +130,11 @@ public class MainController {
 	}
 
 	@RequestMapping(value="/blogPost" , method=RequestMethod.GET)
-	public void getBlogPosts(ModelMap model, @RequestParam("getBlogId") String blogId) 
+	public String getBlogPosts(ModelMap model, @RequestParam("getBlogId") String blogId) 
 	{
 		System.out.println("blogId: "+blogId);
 		BlogPost bp = blogRepo.findById(blogId);
 		model.put("bp",bp);
+		return "blogPost";
 	}
 }
