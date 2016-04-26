@@ -15,4 +15,7 @@ public interface BlogPostRepository extends MongoRepository<BlogPost, String> {
 	public List<BlogPost> findByTags(ArrayList  tags);
 	public Page<BlogPost> findAll(Pageable pageable);
 	public List<BlogPost> findAll(Sort date);
+	public List<BlogPost> findByTags(Sort date, ArrayList tags);
+	public List<BlogPost> findByTitle(Sort date, String title);
+
 }

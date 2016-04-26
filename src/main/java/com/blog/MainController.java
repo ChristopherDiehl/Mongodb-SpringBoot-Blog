@@ -39,6 +39,27 @@ public class MainController {
 		return "index";
 	}
 
+
+	@RequestMapping(value={"/searchIndex"}, method=RequestMethod.POST)
+	public String searchIndex(ModelMap model, @RequestParam("search") String search)
+	{
+		System.out.println("searchIndex");
+		Sort sort = new Sort(Sort.Direction.DESC,"date");
+		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findByTitle(sort,search);
+		System.out.println("bpl called ");
+		if(bpl.size() >0){
+		 BlogPost bp= bpl.get(0);
+		 System.out.println(bp.toString());
+		} else 
+		{
+			 ArrayList <String> tags = new ArrayList<String>();
+			 tags.add(search);
+			 bpl = (ArrayList<BlogPost>) blogRepo.findByTags(sort,tags);
+		}
+		model.put("BLOGS",bpl);
+		return "index";
+	}
+
 	@RequestMapping(value="/aboutUs")
 	public String aboutUs()
 	{
