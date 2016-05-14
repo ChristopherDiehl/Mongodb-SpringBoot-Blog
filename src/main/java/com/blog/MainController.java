@@ -31,10 +31,13 @@ public class MainController {
 	{
 		Sort sort = new Sort(Sort.Direction.DESC,"date");
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findAll(sort);
-		if(bpl.size() >0){
+		
+		if (bpl.size() >0) 
+		{
 		 BlogPost bp= bpl.get(0);
 		 System.out.println(bp.toString());
 		}
+		
 		model.put("BLOGS",bpl);
 		return "index";
 	}
@@ -47,7 +50,9 @@ public class MainController {
 		Sort sort = new Sort(Sort.Direction.DESC,"date");
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findByTitle(sort,search);
 		System.out.println("bpl called ");
-		if(bpl.size() >0){
+		
+		if(bpl.size() >0)
+		{
 		 BlogPost bp= bpl.get(0);
 		 System.out.println(bp.toString());
 		} else 
@@ -56,6 +61,7 @@ public class MainController {
 			 tags.add(search);
 			 bpl = (ArrayList<BlogPost>) blogRepo.findByTags(sort,tags);
 		}
+		
 		model.put("BLOGS",bpl);
 		return "index";
 	}

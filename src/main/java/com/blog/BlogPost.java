@@ -38,6 +38,7 @@ public class BlogPost
 		this.firstParagraph = getFirstParagraph();
 		this.date = new Date();
 		this.tags = (ArrayList<String>) Arrays.asList(tags.split("\\s*,\\s*"));
+		System.out.println("tags: "+tags.toString());
 	}
 
 	@Override
@@ -58,10 +59,12 @@ public class BlogPost
 	
 
 	
-	public void setTag(String tag)
+	public void setTags(ArrayList<String>tags)
 	{	
-		tags.add(tag);
-	}
+		this.tags = tags;
+		System.out.println("tags: "+tags.toString());
+
+	}	
 
 	public ArrayList <String> getTags()
 	{

@@ -20,7 +20,8 @@
 
   <!-- Custom CSS -->
   <link href="css/style.css" rel="stylesheet" />
-
+  <script src="static/ckeditor/ckeditor.js" th:src="@{ckeditor/ckeditor.js}"></script>
+  
 </head>
 <body>
   <!--Navbar-->
@@ -60,12 +61,12 @@
               <label for="input" class="sr-only">Title</label>
               <input type="text" th:field="*{title}" class="form-control" placeholder="Title" required="required" autofocus="autofocus" />
               <h2>Tags</h2>
-              <input type="text" th:field="*{tags}" class="form-control" placeholder="Tags" required="required" />
+              <textarea type="text" th:field="*{tags}" class="form-control" placeholder="Tags" required="required" />
               <label for="Blog post" class="sr-only">Blog Post</label>
               <h2>Summary</h2>
 			   <input type="text" th:field="*{summary}" class="form-control" placeholder="summary" required="required" />
               <h2>Blog Body</h2>
-              <textarea class="form-control" rows="6" th:field="*{body}" placeholder="What's up?" required="required"></textarea>
+              <textarea class="form-control" rows="6" th:field="*{body}" name="page" id="page" placeholder="What's up?" required="required"></textarea>
           	 <button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color:#F6358A;">submit</button>
           	  <input type="hidden" th:field="*{author}" value="Emily" />
           	  </form>
@@ -73,10 +74,7 @@
           <aside class="col-md-4 guide">
             <div>
               <p> Love ya.<br />
-                GUIDE:<br />
-                Put a <b>&lt;p&gt;</b> before each new paragraph and a <br /><b>&lt;/p&gt;</b> at the end of each paragraph
-                <br />Example<br />
-                &lt;p&gt; This is an example paragraph &lt;/p&gt;
+              
 
               </p>
             </div>
@@ -97,10 +95,10 @@
   </center>
 </footer>
 </body>
+
  <script>
        CKEDITOR.replace( 'page' );
   </script>
 
- <script src="../../scripts/ckeditor/ckeditor.js" th:src="@{/scripts/ckeditor/ckeditor.js}"></script>
  
 </html>

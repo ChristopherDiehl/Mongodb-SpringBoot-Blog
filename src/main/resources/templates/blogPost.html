@@ -39,8 +39,8 @@
           </ul>
           <ul class="nav navbar-nav navbar-brand" >
             <li class ="nav-items"><a href="index">Blog</a></li>
-            <li class= "nav-items" ><a href="videos.html">Videos</a></li>
-            <li class= "nav-items"><a href="#">About Us</a></li>
+            <li class= "nav-items" ><a href="videos">Videos</a></li>
+            <li class= "nav-items"><a href="aboutU">About Us</a></li>
           </ul><span></span>
           <ul class="nav navbar-nav  navbar-brand">
           	<li><a href="https://www.instagram.com/ecatalds/"><i class="fa fa-fw fa-twitter"></i></a></li>
@@ -57,7 +57,7 @@
         <p th:text="${bp.summary}"></p>
 
       </header>
-      <p th:text="${bp.body}">
+      <p th:utext="${bp.body}">
        
       </p>
       <p th:text="${bp.author}"></p>
@@ -73,9 +73,8 @@
         <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </div>
-      <div class = "col-md-4" th:each="tag : ${bp.tags}">
-      
-             <a th:text="${tag}"></a>
+      <div class = "col-md-1" th:each="tag : ${bp.tags}">
+      	 <a th:text="${tag}"></a>
       </div>
     </div>
     </article>
