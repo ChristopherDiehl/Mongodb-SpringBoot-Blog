@@ -17,7 +17,6 @@ public class BlogPost
 	private String author;
 	private String body;
 	private String summary;
-	private String firstParagraph;
 	private ArrayList <String> tags;
 	@Transient
 	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -35,7 +34,6 @@ public class BlogPost
 		this.author = author;
 		this.body = body;
 		this.summary = summary;
-		this.firstParagraph = getFirstParagraph();
 		this.date = new Date();
 		this.tags = (ArrayList<String>) Arrays.asList(tags.split("\\s*,\\s*"));
 		System.out.println("tags: "+tags.toString());
@@ -89,16 +87,7 @@ public class BlogPost
 		return this.author;
 	}
 
-	public String getFirstParagraph()
-	{
-		String [] firstParagraph = body.split("</p>");
-		if(firstParagraph.length > 0){
-			System.out.println(firstParagraph[0]);
 
-			return firstParagraph[0];
-		}
-		return "";
-	}
 	public String getTitle()
 	{
 		return this.title;
@@ -125,7 +114,6 @@ public class BlogPost
 	public void setBody(String body)
 	{
 		this.body = body;
-		this.firstParagraph = getFirstParagraph();
 	}
 
 }

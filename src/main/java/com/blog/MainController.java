@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -142,11 +143,10 @@ public class MainController {
 	@RequestMapping(value="/newPost", method=RequestMethod.POST)
     public String ReturnUrl (@ModelAttribute BlogPost bp, Model model) {
         model.addAttribute("bp", bp);
-        System.out.println("ATTEMPTING TO SAVE BLOG POST");
-        System.out.println("BP: title: "+bp.getTitle()+"author: "+bp.getAuthor() +"Date"+bp.getDate()+"body:"+bp.getBody()+"summary: "+bp.getSummary());
         blogRepo.save(bp);
+        model.addAttribute("bp",bp);
         
-        return "index";
+        return "blogPost";
    }
 
 	@RequestMapping("/videos")
@@ -159,7 +159,7 @@ public class MainController {
 	@RequestMapping(value="/blogPost" , method=RequestMethod.GET)
 	public String getBlogPosts(ModelMap model, @RequestParam("getBlogId") String blogId) 
 	{
-		System.out.println("blogId: "+blogId);
+
 		BlogPost bp = blogRepo.findById(blogId);
 		model.put("bp",bp);
 		return "blogPost";
