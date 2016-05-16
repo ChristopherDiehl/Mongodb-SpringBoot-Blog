@@ -30,14 +30,11 @@ public class MainController {
 	@RequestMapping(value={"/","/index"}, method=RequestMethod.GET)
 	public String index(ModelMap model)
 	{
+		
+		
+		
 		Sort sort = new Sort(Sort.Direction.DESC,"date");
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findAll(sort);
-		
-		if (bpl.size() >0) 
-		{
-		 BlogPost bp= bpl.get(0);
-		 System.out.println(bp.toString());
-		}
 		
 		model.put("BLOGS",bpl);
 		return "index";
@@ -52,11 +49,7 @@ public class MainController {
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findByTitle(sort,search);
 		System.out.println("bpl called ");
 		
-		if(bpl.size() >0)
-		{
-		 BlogPost bp= bpl.get(0);
-		 System.out.println(bp.toString());
-		} else 
+		if(bpl.size()  <= 0)
 		{
 			 ArrayList <String> tags = new ArrayList<String>();
 			 tags.add(search);
@@ -140,13 +133,14 @@ public class MainController {
 	  return mp;
 	}
 
-	@RequestMapping(value="/newPost", method=RequestMethod.POST)
+	@RequestMapping(value={"/newPost","/edit"}, method=RequestMethod.POST)
     public String ReturnUrl (@ModelAttribute BlogPost bp, Model model) {
-        model.addAttribute("bp", bp);
-        blogRepo.save(bp);
-        model.addAttribute("bp",bp);
-        
-        return "blogPost";
+	
+		model.addAttribute("bp", bp);
+		blogRepo.save(bp);
+		model.addAttribute("bp",bp);
+
+	   return "blogPost";
    }
 
 	@RequestMapping("/videos")
@@ -164,4 +158,15 @@ public class MainController {
 		model.put("bp",bp);
 		return "blogPost";
 	}
+	
+	@RequestMapping(value="/edit" , method=RequestMethod.GET)
+	public String editBlogPost(ModelMap model, @RequestParam("getBlogId") String blogId) 
+	{
+
+		BlogPost bp = blogRepo.findById(blogId);
+		model.put("bp",bp);
+		return "edit";
+	}
+
+
 }

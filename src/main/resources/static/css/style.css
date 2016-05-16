@@ -6,6 +6,7 @@ html, body {
 .navbar {
 	background-color: white;
 	width: 100%;
+	max-height: 100px;
 }
 .navbar-brand,
 .navbar-nav li a {
@@ -85,4 +86,24 @@ footer {
 .aboutPic {
 	padding-bottom: 20px;
 	/*Need to remove this for mobile stylesheet*/
+}
+
+.share {
+	max-height: 20px;
+	padding-left: 0px;
+}
+
+.share-icon {
+	padding-left: 0px;
+	align:left;
+	
+}
+
+@media only screen and (max-height: 400px) { 
+  .twitter { 
+    display: none; 
+  } 
+  .pinterest { 
+    display: none; 
+  } 
 }
