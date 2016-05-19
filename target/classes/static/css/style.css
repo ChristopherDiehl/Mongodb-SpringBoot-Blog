@@ -98,6 +98,11 @@ footer {
 	align:left;
 	
 }
+.comments {
+	position:relative;
+	padding-left:0px;
+}
+
 
 @media only screen and (max-height: 400px) { 
   .twitter { 

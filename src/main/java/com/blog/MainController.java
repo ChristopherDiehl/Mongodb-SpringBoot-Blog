@@ -47,10 +47,11 @@ public class MainController {
 		System.out.println("searchIndex");
 		Sort sort = new Sort(Sort.Direction.DESC,"date");
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findByTitle(sort,search);
-		System.out.println("bpl called ");
+		System.out.println("bpl size: "+bpl.size());
 		
 		if(bpl.size()  <= 0)
 		{
+			 System.out.println("tags:" +search);
 			 ArrayList <String> tags = new ArrayList<String>();
 			 tags.add(search);
 			 bpl = (ArrayList<BlogPost>) blogRepo.findByTags(sort,tags);

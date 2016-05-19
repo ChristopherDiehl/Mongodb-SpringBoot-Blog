@@ -1,0 +1,6 @@
+com/blog/LoginCredentials.class
+com/blog/BlogApplication.class
+com/blog/BlogPost.class
+com/blog/BlogPostRepository.class
+com/blog/SecurityConfiguration.class
+com/blog/MainController.class

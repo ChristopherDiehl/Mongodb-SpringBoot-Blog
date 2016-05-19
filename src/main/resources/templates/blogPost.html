@@ -7,7 +7,9 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="" />
+  <meta name="description" th:content="${bp.summary}"/>
+
+  <meta name="keywords" th:content="${bp.title}"/>
   <meta name="author" content="Christopher Diehl" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
@@ -43,35 +45,32 @@
             <li class= "nav-items"><a href="aboutU">About Us</a></li>
           </ul><span></span>
           <ul class="nav navbar-nav  navbar-brand">
-          	<li><a href="https://www.instagram.com/ecatalds/"><i class="fa fa-fw fa-twitter"></i></a></li>
-          	<li><a href="https://www.instagram.com/ecatalds/"><i class="fa fa-fw fa-instagram"></i></a></li>
-          	<li><a href="https://www.facebook.com/emily.cataldi.7?fref=ts"><i class="fa fa-fw fa-facebook"></i></a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-    <div id="content" class="col-md-8">
+           <li><a href="https://www.instagram.com/ecatalds/"><i class="fa fa-fw fa-twitter"></i></a></li>
+           <li><a href="https://www.instagram.com/ecatalds/"><i class="fa fa-fw fa-instagram"></i></a></li>
+           <li><a href="https://www.facebook.com/emily.cataldi.7?fref=ts"><i class="fa fa-fw fa-facebook"></i></a></li>
+         </ul>
+       </div><!--/.nav-collapse -->
+     </div>
+   </nav>
+   <div id="content" class="col-md-8">
      <article>
       <header>
         <h1 th:text="${bp.title}"></h1>
         <p th:text="${bp.summary}"></p>
-
       </header>
-      <p th:utext="${bp.body}">
-
-      </p>
+      <p th:utext="${bp.body}"></p>
       <p th:text="${bp.author}"></p>
-      
+
       <div class = "container share">
-        <div class = "col-md-1 share-icon" style="max-height:20px">
-         <p th:text="${bp.date}" style="max-height:20px; margin-top:0;"></p>
+         <div class = "col-md-1 share-icon" style="max-height:20px">
+          <p th:text="${bp.date}" style="max-height:20px; margin-top:0;"></p>
         </div>
         <div class = "pinterest share-icon col-md-1">
           <a data-pin-do="buttonPin" data-pin-color="white" data-pin-count="beside" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F"><img src="https://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_20.png" /></a>
         </div>
         <div class ="twitter share-icon col-md-1">
           <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </div>
         <div class = "col-md-1 share-icon">
           <p style="max-height:20px; margin-top:0;">Tags:</p>
@@ -80,21 +79,41 @@
           <a th:text="${tag}"></a>
         </div>
       </div>
-
- </article>
- 
+    </article>  
+    <aside class="col-md-4">
+    </aside>
+  </div>
 </div>
-<aside class="col-md-4">
-
-
-</aside>
+<div id ="comments" class="container-fluid comments">
+  <div id="comment" th:each="comment: ${comments}">
+    <p th:text="${comment}"></p>
+  </div>
+  <form th:action="@{/comment}" method = "post" class ="navbar-form navbar-left">
+    <div class="container col-md-10" style="padding:20px">
+      <label for="comment">Comment:</label>
+      <div class = "form-group">
+        <div class="row">
+          <div class='col-md-6'>
+           <textarea class="form-control comment"  th:value="${comment}.comment" rows ="2" name="Comment" placeholder="Comment"> </textarea>
+           <input type="hidden" th:value="${comment.comment}" />
+          </div>
+        </div>
+        <div class="row">
+          <div class='col-md-6'>
+           <button type="submit" class ="btn btn-default"> Submit </button>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </form>
 </div>
-
-<footer class="container-fluid">
- <center>
-  <p>Copyright &copy; 2016 Christopher Diehl </p>
-  <p><small>all rights reserved</small></p>
-</center>
+<footer class="footer">
+  <div class="container">
+    <center>
+      <p>Copyright &copy; 2016 Christopher Diehl </p>
+      <p><small>all rights reserved</small></p>
+    </center>
+  </div>
 </footer>
 </body>
 <script async="async" defer="defer" src="//assets.pinterest.com/js/pinit.js"></script>
