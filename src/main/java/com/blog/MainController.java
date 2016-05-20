@@ -8,16 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 @Controller
@@ -25,14 +19,13 @@ import org.springframework.data.domain.Sort;
 public class MainController {
 
 	@Autowired 
-		private BlogPostRepository blogRepo;
+	private BlogPostRepository blogRepo;
+	@Autowired
+	private CommentRepository commentRepo;
 
 	@RequestMapping(value={"/","/index"}, method=RequestMethod.GET)
 	public String index(ModelMap model)
 	{
-		
-		
-		
 		Sort sort = new Sort(Sort.Direction.DESC,"date");
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findAll(sort);
 		
@@ -47,14 +40,12 @@ public class MainController {
 		System.out.println("searchIndex");
 		Sort sort = new Sort(Sort.Direction.DESC,"date");
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findByTitle(sort,search);
-		System.out.println("bpl size: "+bpl.size());
 		
 		if(bpl.size()  <= 0)
 		{
-			 System.out.println("tags:" +search);
-			 ArrayList <String> tags = new ArrayList<String>();
-			 tags.add(search);
-			 bpl = (ArrayList<BlogPost>) blogRepo.findByTags(sort,tags);
+			ArrayList <String> tags = new ArrayList<String>();
+			tags.add(search);
+			bpl = (ArrayList<BlogPost>) blogRepo.findByTags(sort,tags);
 		}
 		
 		model.put("BLOGS",bpl);
@@ -70,21 +61,20 @@ public class MainController {
 	@RequestMapping(value="/blog_post{title}", method=RequestMethod.GET)
 	public ModelMap blogByTitle(@PathVariable String title) 
 	{
-	  BlogPost bp = blogRepo.findByTitle(title);
-	  ModelMap model = new ModelMap();
-	  model.put("BLOG_TITLE",bp.getTitle());
-	  model.put("BLOG_AUTHOR",bp.getAuthor());
-	  model.put("BLOG_BODY",bp.getBody());
-	  model.put("BLOG_TAGS",bp.getTags());
-	  model.put("BLOG_SUMMARY",bp.getSummary());
-	  return model;
+		BlogPost bp = blogRepo.findByTitle(title);
+		ModelMap model = new ModelMap();
+		model.put("BLOG_TITLE",bp.getTitle());
+		model.put("BLOG_AUTHOR",bp.getAuthor());
+		model.put("BLOG_BODY",bp.getBody());
+		model.put("BLOG_TAGS",bp.getTags());
+		model.put("BLOG_SUMMARY",bp.getSummary());
+		return model;
 	}
 
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(Model model,HttpServletRequest request)
 	{	
-		System.out.println(request.getRemoteAddr());
-	
+		System.out.println(request.getRemoteAddr() +"tried to access /login");
 		System.out.println("Login controller");
 		return "login";
 	}
@@ -92,30 +82,33 @@ public class MainController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginPost(Model model)
 	{	
-		//model.addAttribute("lc", new LoginCredentials());
-		System.out.println("Login POST controller");
 		model.addAttribute("bp",new BlogPost());
 		return "newPost";
 	}
 	
 	@RequestMapping("/login-error.html")
-	public String loginError(Model model) {
+	public String loginError(Model model) 
+	{
 		System.out.println("ADDING LOGING ERROR");
-	    model.addAttribute("loginError", true);
-	    return "login";
+		model.addAttribute("loginError", true);
+		return "login";
 	}
 	
 	@RequestMapping("/error.html")
-	  public String error(HttpServletRequest request, Model model) {
-	    model.addAttribute("errorCode", request.getAttribute("javax.servlet.error.status_code"));
-	    Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
-	    String errorMessage = null;
-	    if (throwable != null) {
-	      errorMessage = throwable.getMessage();
-	    }
-	    model.addAttribute("errorMessage", errorMessage);
-	    return "error";
-	 }
+	public String error(HttpServletRequest request, Model model) 
+	{
+		model.addAttribute("errorCode", request.getAttribute("javax.servlet.error.status_code"));
+		Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
+		String errorMessage = null;
+
+		if (throwable != null) 
+		{
+			errorMessage = throwable.getMessage();
+		}
+
+		model.addAttribute("errorMessage", errorMessage);
+		return "error";
+	}
 	
 	@RequestMapping(value="/newPost", method = RequestMethod.GET)
 	public String isLoggedIn( Model model)
@@ -125,24 +118,34 @@ public class MainController {
 		return "newPost";
 	}
 
-	@RequestMapping(value="/blog_post{tags}", method=RequestMethod.GET)
-	public ModelMap blogByTitle(@PathVariable ArrayList<String> tags) 
-	{
-	  ArrayList<BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findByTags(tags);
-	  ModelMap mp = new ModelMap();
-	  mp.put("BLOGS",bpl);
-	  return mp;
-	}
-
 	@RequestMapping(value={"/newPost","/edit"}, method=RequestMethod.POST)
-    public String ReturnUrl (@ModelAttribute BlogPost bp, Model model) {
-	
+	public String ReturnUrl (@ModelAttribute BlogPost bp, Model model) 
+	{
 		model.addAttribute("bp", bp);
 		blogRepo.save(bp);
 		model.addAttribute("bp",bp);
 
-	   return "blogPost";
-   }
+		return "blogPost";
+	}
+
+	@RequestMapping(value={"/comment"}, method=RequestMethod.POST)
+	public ModelAndView ReturnUrl (@ModelAttribute Comment comment, Model model) 
+	{
+		System.out.println("comments");
+		commentRepo.save(comment);
+		return new ModelAndView("redirect:/blogPost");	
+	}
+
+
+	@RequestMapping(value="/blog_post{tags}", method=RequestMethod.GET)
+	public ModelMap blogByTitle(@PathVariable ArrayList<String> tags) 
+	{
+		ArrayList<BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findByTags(tags);
+		ModelMap mp = new ModelMap();
+		mp.put("BLOGS",bpl);
+		return mp;
+	}
+
 
 	@RequestMapping("/videos")
 	public String videos(ModelMap model) 
@@ -154,16 +157,20 @@ public class MainController {
 	@RequestMapping(value="/blogPost" , method=RequestMethod.GET)
 	public String getBlogPosts(ModelMap model, @RequestParam("getBlogId") String blogId) 
 	{
-
 		BlogPost bp = blogRepo.findById(blogId);
+		Sort sort = new Sort(Sort.Direction.DESC,"date");
+		ArrayList <Comment> comments = commentRepo.findByBlogId(sort,bp.getId());
+
+		model.put("comments",comments);
+		model.put("comment",new Comment());
 		model.put("bp",bp);
+
 		return "blogPost";
 	}
 	
 	@RequestMapping(value="/edit" , method=RequestMethod.GET)
 	public String editBlogPost(ModelMap model, @RequestParam("getBlogId") String blogId) 
 	{
-
 		BlogPost bp = blogRepo.findById(blogId);
 		model.put("bp",bp);
 		return "edit";
