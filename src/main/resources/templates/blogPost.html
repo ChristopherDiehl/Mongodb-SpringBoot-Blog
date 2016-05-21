@@ -95,6 +95,7 @@
         <div class="row">
           <div class='col-md-6'>
            <textarea class="form-control comment" th:field="*{message}" rows ="2" name="Comment" placeholder="Comment"> </textarea>
+           <input type="text" class="form-control comment" th:field="*{user}" rows ="2" name="Comment" placeholder="Comment" />
            <input type="hidden" th:value="${bp.id}" th:field="*{blogId}"/>
           </div>
         </div>
