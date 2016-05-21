@@ -85,17 +85,18 @@
   </div>
 </div>
 <div id ="comments" class="container-fluid comments">
-  <div id="comment" th:each="comment: ${comments}">
-    <p th:text="${comment}"></p>
+  <div id="comment" th:each="ct: ${comments}">
+    <p th:text="${ct.message}"></p>
   </div>
-  <form th:action="@{/comment}" method ="post" class ="navbar-form navbar-left">
+  <form th:action="@{/comment}" method ="post" th:object="${comment}" class ="navbar-form ">
     <div class="container col-md-10" style="padding:20px">
       <label for="comment">Comment:</label>
       <div class = "form-group">
         <div class="row">
           <div class='col-md-6'>
-           <textarea class="form-control comment"  th:value="${comment.comment}" rows ="2" name="Comment" placeholder="Comment"> </textarea>
-           <input type="hidden" th:value="${bp.id}" id="commentBlogID"/>
+           <textarea class="form-control comment" th:field="*{message}" rows ="2" placeholder="Comment"> </textarea>
+          
+           <input type="hidden" th:value="${bp.id}" name="blogId"/>
           </div>
         </div>
         <div class="row">

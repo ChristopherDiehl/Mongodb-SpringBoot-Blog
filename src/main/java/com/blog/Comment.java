@@ -3,15 +3,14 @@ import org.springframework.data.annotation.Id;
 
 public class Comment 
 {
-	@Id
-	private String id;
+	
 	private String blogId;
-	private String comment;
+	private String message;
 
-	public Comment(String blogId, String comment)
+	public Comment(String blogId, String message)
 	{
 		this.blogId = blogId;
-		this.comment = comment;
+		this.message = message;
 	}
 
 	public Comment() {}
@@ -26,13 +25,13 @@ public class Comment
 		return blogId;
 	}
 
-	public void setComment(String comment)
+	public void setMessage(String message)
 	{
-		this.comment = comment;
+		this.message = message;
 	}
 
-	public String getComment()
+	public String getMessage()
 	{
-		return comment;
+		return message;
 	}
 }

@@ -131,9 +131,10 @@ public class MainController {
 	@RequestMapping(value={"/comment"}, method=RequestMethod.POST)
 	public ModelAndView ReturnUrl (@ModelAttribute Comment comment, Model model) 
 	{
-		System.out.println("comments");
+		System.out.println("comment"+comment.getMessage()+"blogID: "+comment.getblogId());
 		commentRepo.save(comment);
-		return new ModelAndView("redirect:/blogPost");	
+		
+		return new ModelAndView("redirect:/blogPost?getBlogId="+comment.getblogId());	
 	}
 
 
