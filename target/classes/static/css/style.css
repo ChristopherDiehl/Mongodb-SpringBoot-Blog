@@ -115,8 +115,22 @@ footer {
 
 .row {
 	margin-left: 0px;
+	padding-left: 15px;
+
 }
 
 .btn {
 	margin-top: 10px;
+}
+.comments {
+	padding-left:20px;
+}
+
+.posted_comment {
+	padding-left:30px;
+	background: grey;
+	overflow:auto;
+	background:rgba(119,78,78,0.5);
+	margin-top:10px;
+	margin-bottom:20px;
 }

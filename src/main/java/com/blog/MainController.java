@@ -124,6 +124,8 @@ public class MainController {
 		model.addAttribute("bp", bp);
 		blogRepo.save(bp);
 		model.addAttribute("bp",bp);
+		model.addAttribute("comments",null);
+		model.addAttribute("comment",new Comment());
 
 		return "blogPost";
 	}
