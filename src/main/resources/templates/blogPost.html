@@ -85,27 +85,27 @@
   </div>
 </div>
 <div id ="comments" class="container-fluid comments">
-  <div id="comment" th:each="ct: ${comments}">
-    <p th:text="${ct.message}"></p>
-  </div>
-  <form th:action="@{/comment}" method ="post" th:object="${comment}" class ="navbar-form navbar-left">
-    <div class="container col-md-10" style="padding:20px">
-      <label for="comment">Comment:</label>
-      <div class = "form-group">
-        <div class="row">
-          <div class='col-md-6'>
-           <textarea class="form-control comment" th:field="*{message}" rows ="2" name="Comment" placeholder="Comment"> </textarea>
-           <input type="text" class="form-control comment" th:field="*{user}" rows ="2" name="Comment" placeholder="Comment" />
-           <input type="hidden" th:value="${bp.id}" th:field="*{blogId}"/>
-          </div>
-        </div>
-        <div class="row">
-          <div class='col-md-6'>
-           <button type="submit" class ="btn btn-default"> Submit </button>
-          </div>
-        </div>
-      </div>  
+  <div class="row" th:each="ct: ${comments}">
+  	<div class="col-md-4">
+  	 <p th:text="${ct.message}"></p>
+  	</div>
+    <div class="col-md-2">
+        <p th:text="- ${ct.user}"></p>
     </div>
+  </div>
+  <form method = "post" class="row" th:object="${comment}" th:action="@{/comment}">
+   
+    <div class="form-group col-md-6">
+ 	  <label>Comment</label>
+      <textarea class="form-control"  th:field="*{message}" rows ="3" name="Comment" >Comment </textarea>
+    </div>
+    <div class="form-group col-md-2">
+      <label>Name</label>
+      <input type="text" class="form-control"  th:field="*{user}" placeholder="Jane Doe" />
+      <center><button type="submit" class="btn btn-default">Submit</button></center>
+    </div>
+    <input type="hidden" th:value="${bp.id}" name="blogId"/>
+
   </form>
 </div>
 <footer class="footer">
