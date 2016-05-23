@@ -45,7 +45,7 @@
           <ul class="nav navbar-nav navbar-brand" >
             <li class ="nav-items"><a href="index">Blog</a></li>
             <li class= "nav-items" ><a href="videos">Videos</a></li>
-            <li class= "nav-items"><a href="aboutU">About Us</a></li>
+            <li class= "nav-items"><a href="aboutUs">About Us</a></li>
           </ul><span></span>
           <ul class="nav navbar-nav  navbar-brand">
            <li><a href="https://www.instagram.com/ecatalds/"><i class="fa fa-fw fa-twitter"></i></a></li>
@@ -65,13 +65,13 @@
       <p th:text="${bp.author}"></p>
 
       <div class = "container share">
-         <div class = "col-md-1 share-icon" style="max-height:20px">
+         <div class = "col-md-2 share-icon" style="max-height:20px">
           <p th:text="${bp.date}" style="max-height:20px; margin-top:0;"></p>
         </div>
-        <div class = "pinterest share-icon col-md-1">
+        <div class = "pinterest share-icon col-md-2">
           <a data-pin-do="buttonPin" data-pin-color="white" data-pin-count="beside" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F"><img src="https://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_20.png" /></a>
         </div>
-        <div class ="twitter share-icon col-md-1">
+        <div class ="twitter share-icon col-md-2">
           <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         </div>
@@ -90,11 +90,11 @@
 <div id ="comments" class="container-fluid comments">
   <h3 style="font-color: #F6358A; padding-left:20px">Comments:</h3>
   <div class="row" th:each="ct: ${comments}">
-    <div class="posted_comment col-md-8">
-      <div class="col-md-2">
+    <div class="posted_comment col-md-8 img-rounded">
+      <div class="row">
           <p> <span th:text="${ct.user}"> </span> said :</p>
       </div>
-      <div class="col-md-4">
+      <div class="row message img-rounded">
     	 <p>" <span th:text="${ct.message}"></span> "</p>
     	</div>
     </div>

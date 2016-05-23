@@ -142,4 +142,15 @@ footer {
 	background:rgba(247, 211, 211, 0.5);
 	margin-top:10px;
 	margin-bottom:20px;
+	padding-bottom: 15px;
+}
+
+.container {
+	width: 100% !important;
+}
+
+.message {
+	background: white;
+	width: 90%;
+	margin:0px;
 }
