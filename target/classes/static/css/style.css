@@ -119,7 +119,7 @@ footer {
 
 }
 
-.btn {
+.btn-comment {
 	margin-top: 10px;
 }
 .comments {
@@ -127,10 +127,10 @@ footer {
 }
 
 .posted_comment {
-	padding-left:30px;
+	margin-left:30px;
 	background: grey;
 	overflow:auto;
-	background:rgba(119,78,78,0.5);
+	background:rgba(247, 211, 211, 0.5);
 	margin-top:10px;
 	margin-bottom:20px;
 }

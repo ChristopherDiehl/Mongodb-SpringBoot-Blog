@@ -7,15 +7,20 @@ public class Comment
 	private String blogId;
 	private String message;
 	private String user;
+	@Field
+	private Date date;
 
 	public Comment(String blogId, String message, String user)
 	{
 		this.blogId = blogId;
 		this.message = message;
 		this.user = user;
+		this.date = new Date();
 	}
 
-	public Comment() {}
+	public Comment() {
+		this.date = new Date();
+	}
 
 	public void setblogId(String blogId)
 	{
@@ -46,4 +51,17 @@ public class Comment
 	{
 		this.user = user;
 	}
+
+	@Transient
+	public String getDate()
+	{
+		return dateFormat.format(date);
+	}
+	
+	@Transient
+	public void setDate()
+	{
+		date = new Date();
+	}
+
 }
