@@ -1,5 +1,11 @@
 package com.blog;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 public class Comment 
 {
@@ -7,6 +13,8 @@ public class Comment
 	private String blogId;
 	private String message;
 	private String user;
+	@Transient
+	private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 	@Field
 	private Date date;
 

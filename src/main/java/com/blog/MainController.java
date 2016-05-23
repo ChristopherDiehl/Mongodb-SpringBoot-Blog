@@ -161,7 +161,7 @@ public class MainController {
 	public String getBlogPosts(ModelMap model, @RequestParam("getBlogId") String blogId) 
 	{
 		BlogPost bp = blogRepo.findById(blogId);
-		Sort sort = new Sort(Sort.Direction.DESC,"date");
+		Sort sort = new Sort(Sort.Direction.ASC,"date");
 		ArrayList <Comment> comments = commentRepo.findByBlogId(sort,bp.getId());
 
 		model.put("comments",comments);

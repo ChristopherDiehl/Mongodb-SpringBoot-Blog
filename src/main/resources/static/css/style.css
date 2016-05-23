@@ -113,6 +113,15 @@ footer {
   } 
 }
 
+@supports (overflow:-webkit-marquee) and (justify-content:inherit) {
+
+	.navbar-right{
+		float: none !important;
+		margin-left: 50%;
+	}
+
+}
+
 .row {
 	margin-left: 0px;
 	padding-left: 15px;
