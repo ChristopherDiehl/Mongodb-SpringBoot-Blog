@@ -63,28 +63,27 @@
       </header>
       <p th:utext="${bp.body}"></p>
       <p th:text="${bp.author}"></p>
-
-      <div class = "container share">
-         <div class = "col-md-2 share-icon" style="max-height:20px">
-          <p th:text="${bp.date}" style="max-height:20px; margin-top:0;"></p>
-        </div>
-        <div class = "pinterest share-icon col-md-2">
-          <a data-pin-do="buttonPin" data-pin-color="white" data-pin-count="beside" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F"><img src="https://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_20.png" /></a>
-        </div>
-        <div class ="twitter share-icon col-md-2">
-          <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        </div>
-        <div class = "col-md-1 share-icon">
-          <p style="max-height:20px; margin-top:0;">Tags:</p>
-        </div>
-        <div class = "col-md-1 share-icon" th:each="tag : ${bp.tags}">
-          <a th:text="${tag}"></a>
-        </div>
-      </div>
     </article>  
     <aside class="col-md-4">
     </aside>
+    <div class = "row share">
+      <div class = "col-md-2 share-icon" style="max-height:20px">
+        <p th:text="${bp.date}" style="max-height:20px; margin-top:0;"></p>
+      </div>
+      <div class = "pinterest share-icon col-md-2">
+        <a data-pin-do="buttonPin" data-pin-color="white" data-pin-count="beside" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fkentbrew%2F6851755809%2F"><img src="https://assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_20.png" /></a>
+      </div>
+      <div class ="twitter share-icon col-md-2">
+        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </div>
+      <div class = "col-md-1 share-icon">
+        <p style="max-height:20px; margin-top:0;">Tags:</p>
+      </div>
+      <div class = "col-md-1 share-icon" th:each="tag : ${bp.tags}">
+        <a th:text="${tag}"></a>
+      </div>
+    </div>
   </div>
 </div>
 <div id ="comments" class="container-fluid comments">

@@ -24,18 +24,12 @@ public class MainController {
 	private CommentRepository commentRepo;
 
 	@RequestMapping(value={"/","/index"}, method=RequestMethod.GET)
-	public String index(ModelMap model, @RequestParam("page") String pageNum)
+	public String index(ModelMap model)
 	{
 		Sort sort = new Sort(Sort.Direction.DESC,"date");
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findAll(sort);
 
-		if(page == null || "".equals(page))
-		{
-			ArrayList <BlogPost> return = bpl.sublist(0,4);
-		}
-		else {
-			
-		}
+
 		model.put("BLOGS",bpl);
 		return "index";
 	}
