@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.io.File;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Sort;
 
 @Controller
@@ -151,13 +155,15 @@ public class MainController {
 	}
 
 
-	@RequestMapping("/videos")
-	public String videos(ModelMap model) 
+	@RequestMapping("/portfolio")
+	public String portfolio(ModelMap model) 
 	{
 		//could  do foo. But it's all static
-		return "videos";
+		return "portfolio";
 	}
 
+	
+	
 	@RequestMapping(value="/blogPost" , method=RequestMethod.GET)
 	public String getBlogPosts(ModelMap model, @RequestParam("getBlogId") String blogId) 
 	{

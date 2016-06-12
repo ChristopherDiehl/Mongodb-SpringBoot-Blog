@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A blog which has everything from teenage parents to dragons, sans dragons. Click here, watch some videos, and look at some product reviews!"/>
+  <meta name="author" content="Christopher Diehl"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+  <title>Christopher Diehl</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="../static/css/bootstrap.min.css"  th:href="@{css/bootstrap.min.css}" rel="stylesheet"/>
+
+  <!-- Custom CSS -->
+  <link href="../static/css/style.css" th:href="@{css/style.css}" rel="stylesheet" />
+
+</head>
+<body>
+  <!--Navbar-->
+  <!-- Static navbar -->
+  <div class = "container-fluid">
+
+    <div th:replace="navbar :: header">.. </div>
+    <div class="col-md-2">
+    </div>
+    <div id="content" class="col-md-8">
+      <div class="work">
+        <center><h3>Work &amp; Projects</h3></center>
+        <div class="list-group">
+          <a href="http://dullestech.com/" class="list-group-item">
+            <h4 class="list-group-item-heading"><b>Duelles Tech</b></h4>
+            <p class="list-group-item-text">I maintain and extend a java web application. Using an agile development philosophy, I provide updates to a variety of non-profit organizations and government agencies on an oderly timeline. My job function ranges from cosmetic updates, to redoing sections of java legacy code and implementing new features.</p>
+          </a>
+          <a href="https://github.com/ChristopherDiehl/Mongodb-SpringBoot-Blog-WAR" class="list-group-item">
+            <h4 class="list-group-item-heading"><b>Blog</b></h4>
+            <p class="list-group-item-text">This blog is currently open sourced and was created using Java Spring and MongoDb. Feel free to download and edit according to your own design preferences and needs. Click my github link on the bottom to check it out.</p>
+          </a>
+          <a href="http://csdportfolio.com" class="list-group-item">
+            <h4 class="list-group-item-heading"><b>Personal Webpage</b></h4>
+            <p class="list-group-item-text">My previous portfolio webpage was created with a more artistic approach in mind than this blog</p>
+          </a>
+          <a href="https://github.com/Tampa2016/team-1" class="list-group-item">
+            <h4 class="list-group-item-heading"><b>Evermore</b></h4>
+            <p class="list-group-item-text">A mobile web app created by my team and I at JP Morgan's Code for Good. Evermore allowed users to upload photos of obstacles that handicapped individuals might find insurmountable. The overall project was a cross between waze and imgur geared to the physically impaired.</p>
+          </a>
+        </div>
+
+      </div>
+      <div>
+        <center><h3>Skills &amp; Expertise</h3></center>
+        <ul class="list-group skills">
+          <li class="list-group-item">Data Structures 
+            <i class="fa fa-gear first-gear"></i><i class="fa fa-gear"></i><i class="fa fa-gear"></i><i class="fa fa-gear"></i></li>
+          <li class="list-group-item">Java 
+            <i class="fa fa-gear "></i><i class="fa fa-gear"></i><i class="fa fa-gear"></i><i class="fa fa-gear"></i>
+          </li>
+          <li class="list-group-item">C
+            <i class="fa fa-gear "></i><i class="fa fa-gear"></i><i class="fa fa-gear"></i>
+          </li>
+          <li class="list-group-item">Spring
+            <i class="fa fa-gear "></i><i class="fa fa-gear"></i><i class="fa fa-gear"></i>
+          </li>
+          <li class="list-group-item">SQL
+           <i class="fa fa-gear "></i><i class="fa fa-gear"></i><i class="fa fa-gear"></i>
+          </li>
+          <li class="list-group-item">Web Design
+            <i class="fa fa-gear "></i><i class="fa fa-gear"></i>
+          </li>
+          <li class="list-group-item">JavaScript
+           <i class="fa fa-gear "></i><i class="fa fa-gear"></i>
+          </li>
+          <li class="list-group-item">Python
+            <i class="fa fa-gear "></i>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="col-md-2"> </div>
+  </div>
+  
+    <div th:replace="footer :: footer">..</div>
+
+  </body>
+  </html>
