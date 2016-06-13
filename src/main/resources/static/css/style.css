@@ -22,6 +22,9 @@ html, body {
 	font-size: 32px;
 }
 
+.posted_comment_mobile{
+	max-width: 90% !important;
+}
 .navbar-default .navbar-brand {
     color: black;
 }
