@@ -18,33 +18,42 @@ html, body {
 	width: 100% !important;
 }
 .navbar-brand {
-	font-family: 'Dancing Script', Georgia, Times, serif;
+	font-family: Georgia, Times, serif;
 	font-size: 32px;
 }
 
+.posted_comment_mobile{
+	max-width: 90% !important;
+}
 .navbar-default .navbar-brand {
-    color: #F6358A;
+    color: black;
 }
 .navbar-default .navbar-nav>li>a{
-    color: #F6358A;
+    color: black;
 
 }
 .navbar-default .navbar-nav>li>a:hover {
-    color: #F6358A;
+    color: black;
 }
 .pagination>li>a{
-    color: #F6358A;
+    color: black;
 	
 }
 .navbar-default {
-  border-color: #F6358A;}
+  border-color: black;}
 
 p {
-	font-family: 'Josefin Sans', Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 18px;
 	line-height: 25px;
 	margin-top: 15px;
+	color:black;
 }
+
+.blog-title{
+	color:black;
+}
+
 .nav-logo {
 	font-size: 42px;
 }
@@ -67,25 +76,47 @@ article {
 	padding-bottom: 20px;
 	border-bottom-style: solid;
 	border-bottom-width:1px;
-	border-bottom-color: #F6358A;
+	border-bottom-color: rgba(27,136,191,.25);
+}
+.blog-header {
+	padding-bottom: 10px;
+	border-bottom-style: solid;
+	border-bottom-width:1px;
+	border-bottom-color: rgba(27,136,191,.25);
 }
 a {
-	color: #F6358A;
+	color: black;
 	font-style: italic;
 }
 footer {
 	height: 60px;
-	background-color: #F6358A;
-	color: white;
 	padding-bottom:100px;
+}
+
+h2 {
+	font-size:2em;
 }
 
 .guide{
 	padding-left: -20px;
 }
 .aboutPic {
-	padding-bottom: 20px;
+	max-height:450px;
 	/*Need to remove this for mobile stylesheet*/
+}
+
+.fa-gear {
+	padding-left:5%;
+	float: right;
+}
+
+.work {
+	padding-bottom: 50px;
+}
+
+.skills{
+	max-width:90%;
+	padding-left:10%;
 }
 
 .share {
@@ -136,10 +167,9 @@ footer {
 }
 
 .posted_comment {
-	margin-left:30px;
 	background: grey;
 	overflow:auto;
-	background:rgba(247, 211, 211, 0.5);
+	background:rgba(5, 82, 105, 0.19);
 	margin-top:10px;
 	margin-bottom:20px;
 	padding-bottom: 15px;
@@ -182,4 +212,31 @@ footer {
 	padding-top:10px;
 	margin-top:30px;
 	background-color: white;
+}
+.btn-social {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #fff;
+    border-radius: 100%;
+    text-align: center;
+    font-size: 20px;
+    line-height: 45px;
+}
+.btn-outline {
+    margin-top: 15px;
+    border: solid 2px black;
+    font-size: 20px;
+    color: black;
+    background: 0 0;
+    transition: all .3s ease-in-out;
+}
+
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active,
+.btn-outline.active {
+    border: solid 2px black;
+    color: white;
+    background: black;
 }

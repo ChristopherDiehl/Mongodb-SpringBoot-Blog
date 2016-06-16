@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.MediaType;
 
 @Controller
 
@@ -38,11 +40,22 @@ public class MainController {
 		return "index";
 	}
 
+	@RequestMapping(value={"/resume"}, method=RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	@ResponseBody
+	public FileSystemResource getFile() 
+	{
+		System.out.println("resume");
+		ClassLoader classLoader = getClass().getClassLoader();
+		return new FileSystemResource(classLoader.getResource("static/files/Resume.pdf").getFile());
+
+	}
+
+
+
 
 	@RequestMapping(value={"/searchIndex"}, method=RequestMethod.POST)
 	public String searchIndex(ModelMap model, @RequestParam("search") String search)
 	{
-		System.out.println("searchIndex");
 		Sort sort = new Sort(Sort.Direction.DESC,"date");
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findByTitle(sort,search);
 		
