@@ -26,6 +26,7 @@ import org.springframework.http.MediaType;
 
 public class MainController {
 
+	private static final String PATH="/error";
 	@Autowired 
 	private BlogPostRepository blogRepo;
 	@Autowired
@@ -36,7 +37,6 @@ public class MainController {
 	{
 		Sort sort = new Sort(Sort.Direction.DESC,"date");
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findAll(sort);
-
 
 		model.put("BLOGS",bpl);
 		return "index";
@@ -111,7 +111,7 @@ public class MainController {
 		return "login";
 	}
 	
-	@RequestMapping("/error.html")
+	@RequestMapping(value = "hj")
 	public String error(HttpServletRequest request, Model model) 
 	{
 		model.addAttribute("errorCode", request.getAttribute("javax.servlet.error.status_code"));

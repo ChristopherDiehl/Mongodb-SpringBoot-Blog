@@ -6,10 +6,10 @@
 	<groupId>com.blog</groupId>
 	<artifactId>Blog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>Blog</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Christopher Diehl blog project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
