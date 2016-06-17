@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -49,9 +51,6 @@ public class MainController {
 		return new FileSystemResource(classLoader.getResource("static/files/Resume.pdf").getFile());
 
 	}
-
-
-
 
 	@RequestMapping(value={"/searchIndex"}, method=RequestMethod.POST)
 	public String searchIndex(ModelMap model, @RequestParam("search") String search)
@@ -132,7 +131,6 @@ public class MainController {
 	public String isLoggedIn( Model model)
 	{
 		model.addAttribute("bp",new BlogPost());
-		System.out.println("lc is not admin");
 		return "newPost";
 	}
 
@@ -149,9 +147,9 @@ public class MainController {
 	}
 
 	@RequestMapping(value={"/comment"}, method=RequestMethod.POST)
-	public ModelAndView ReturnUrl (@ModelAttribute Comment comment, Model model) 
+	public ModelAndView ReturnUrl (@ModelAttribute Comment comment, Model model, ServletRequest request) 
 	{
-		System.out.println("comment"+comment.getMessage()+"blogID: "+comment.getblogId());
+		System.out.println(request.getRemoteAddr()+"comment"+comment.getMessage()+"blogID: "+comment.getblogId());
 		commentRepo.save(comment);
 		
 		return new ModelAndView("redirect:/blogPost?getBlogId="+comment.getblogId());	
