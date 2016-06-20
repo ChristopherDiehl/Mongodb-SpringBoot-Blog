@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 
@@ -26,15 +27,18 @@ import org.springframework.http.MediaType;
 
 public class MainController {
 
-	private static final String PATH="/error";
+	
 	@Autowired 
 	private BlogPostRepository blogRepo;
 	@Autowired
 	private CommentRepository commentRepo;
+	
+	private final Logger logger = LogManager.getLogger(this.getClass());
 
 	@RequestMapping(value={"/","/index"}, method=RequestMethod.GET)
 	public String index(ModelMap model)
 	{
+		logger.info("HELLO WORD");
 		Sort sort = new Sort(Sort.Direction.DESC,"date");
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findAll(sort);
 
@@ -44,9 +48,9 @@ public class MainController {
 
 	@RequestMapping(value={"/resume"}, method=RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	@ResponseBody
-	public FileSystemResource getFile() 
+	public FileSystemResource getFile(ServletRequest request) 
 	{
-		System.out.println("resume");
+		System.out.println(request.getRemoteAddr()+ ": resume");
 		ClassLoader classLoader = getClass().getClassLoader();
 		return new FileSystemResource(classLoader.getResource("static/files/Resume.pdf").getFile());
 
@@ -91,40 +95,16 @@ public class MainController {
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(Model model,HttpServletRequest request)
 	{	
-		System.out.println(request.getRemoteAddr() +"tried to access /login");
-		System.out.println("Login controller");
+		System.out.println(request.getRemoteAddr() +" tried to access /login");
 		return "login";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginPost(Model model)
 	{	
+
 		model.addAttribute("bp",new BlogPost());
 		return "newPost";
-	}
-	
-	@RequestMapping("/login-error.html")
-	public String loginError(Model model) 
-	{
-		System.out.println("ADDING LOGING ERROR");
-		model.addAttribute("loginError", true);
-		return "login";
-	}
-	
-	@RequestMapping(value = "hj")
-	public String error(HttpServletRequest request, Model model) 
-	{
-		model.addAttribute("errorCode", request.getAttribute("javax.servlet.error.status_code"));
-		Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
-		String errorMessage = null;
-
-		if (throwable != null) 
-		{
-			errorMessage = throwable.getMessage();
-		}
-
-		model.addAttribute("errorMessage", errorMessage);
-		return "error";
 	}
 	
 	@RequestMapping(value="/newPost", method = RequestMethod.GET)
@@ -149,7 +129,7 @@ public class MainController {
 	@RequestMapping(value={"/comment"}, method=RequestMethod.POST)
 	public ModelAndView ReturnUrl (@ModelAttribute Comment comment, Model model, ServletRequest request) 
 	{
-		System.out.println(request.getRemoteAddr()+"comment"+comment.getMessage()+"blogID: "+comment.getblogId());
+		System.out.println(request.getRemoteAddr()+": comment :"+comment.getMessage()+"blogID: "+comment.getblogId());
 		commentRepo.save(comment);
 		
 		return new ModelAndView("redirect:/blogPost?getBlogId="+comment.getblogId());	

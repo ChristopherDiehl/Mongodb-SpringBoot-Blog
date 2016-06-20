@@ -32,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       {
 		    auth 
   		    .inMemoryAuthentication()
-  		      .withUser("admin")
+  		      .withUser("ADMIN")
   		        .password("admin")
   		        .roles("ADMIN");
   	  } catch (Exception e) {
