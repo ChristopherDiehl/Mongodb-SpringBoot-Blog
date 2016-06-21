@@ -33,12 +33,12 @@ public class MainController {
 	@Autowired
 	private CommentRepository commentRepo;
 	
-	private final Logger logger = LogManager.getLogger(this.getClass());
+	private final Logger logger = LogManager.getLogger("com.blog");
 
 	@RequestMapping(value={"/","/index"}, method=RequestMethod.GET)
 	public String index(ModelMap model)
 	{
-		logger.info("HELLO WORD");
+
 		Sort sort = new Sort(Sort.Direction.DESC,"date");
 		ArrayList <BlogPost> bpl = (ArrayList<BlogPost>) blogRepo.findAll(sort);
 
@@ -50,7 +50,7 @@ public class MainController {
 	@ResponseBody
 	public FileSystemResource getFile(ServletRequest request) 
 	{
-		System.out.println(request.getRemoteAddr()+ ": resume");
+		logger.trace(request.getRemoteAddr()+ ": resume");
 		ClassLoader classLoader = getClass().getClassLoader();
 		return new FileSystemResource(classLoader.getResource("static/files/Resume.pdf").getFile());
 
@@ -95,7 +95,7 @@ public class MainController {
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(Model model,HttpServletRequest request)
 	{	
-		System.out.println(request.getRemoteAddr() +" tried to access /login");
+		logger.trace(request.getRemoteAddr() +" tried to access /login");
 		return "login";
 	}
 	
@@ -129,7 +129,7 @@ public class MainController {
 	@RequestMapping(value={"/comment"}, method=RequestMethod.POST)
 	public ModelAndView ReturnUrl (@ModelAttribute Comment comment, Model model, ServletRequest request) 
 	{
-		System.out.println(request.getRemoteAddr()+": comment :"+comment.getMessage()+"blogID: "+comment.getblogId());
+		logger.trace(request.getRemoteAddr()+": comment :"+comment.getMessage()+"blogID: "+comment.getblogId());
 		commentRepo.save(comment);
 		
 		return new ModelAndView("redirect:/blogPost?getBlogId="+comment.getblogId());	

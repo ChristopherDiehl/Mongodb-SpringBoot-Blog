@@ -32,13 +32,19 @@ html, body {
 	max-width: 90% !important;
 }
 .navbar-default .navbar-brand {
-    color: whitesmoke;
+   color: whitesmoke;
+}
+
+.desktop-nav-items ::hover{
+	color: #5e5e5e;
+	background-color: transparent;
+}
+.desktop-nav-a{
+	color: whitesmoke;
 }
 .navbar-default .navbar-nav>li>a{
-    color: whitesmoke;
-
+   color: whitesmoke;
 }
-
 .pagination>li>a{
     color: black;
 	
@@ -195,6 +201,10 @@ h2 {
 	padding-left: 10px;
 	height: 25px;
 	margin:0px;
+}
+
+.mobile-nav {
+	color: black !important;
 }
 
 .mobile-collapse {
